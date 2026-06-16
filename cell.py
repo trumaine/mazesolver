@@ -2,7 +2,7 @@ from graphics import Window, Line, Point
 
 
 class Cell:
-    def __init__(self, win: Window):
+    def __init__(self, win: Window | None = None) -> None:
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -14,6 +14,8 @@ class Cell:
         self.__win = win
     
     def draw(self, x1: float, y1: float, x2: float, y2: float) -> None:
+        if self.__win is None:
+            return
         self.__x1 = x1
         self.__y1 = y1
         self.__x2 = x2
@@ -32,6 +34,8 @@ class Cell:
             self.__win.draw_line(line)
 
     def draw_move(self, to_cell: "Cell", undo: bool = False) -> None:
+        if self.__win is None:
+            return
         half_length = abs(self.__x2 - self.__x1) // 2
         x_center = half_length + self.__x1
         y_center = half_length + self.__y1
@@ -46,4 +50,5 @@ class Cell:
         
         line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
         self.__win.draw_line(line, fill_color)
+        
         
