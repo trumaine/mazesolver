@@ -7,6 +7,7 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+        self.visited = False
         self.__x1 = -1.0
         self.__y1 = -1.0
         self.__x2 = -1.0
@@ -40,7 +41,7 @@ class Cell:
             self.__win.draw_line(right_wall)
         else:
             self.__win.draw_line(right_wall, "white")
-            
+
         if self.has_bottom_wall:
             self.__win.draw_line(bottom_wall)
         else:
